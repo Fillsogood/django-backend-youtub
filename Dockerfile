@@ -19,7 +19,7 @@ RUN python -m venv /py && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV = "true"] ; \
         then echo "===THIS IS DEVELOPMENT BUILD===" && \
-        /py/bin/pip install flake8 ; \
+        /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     rm -rf /tmp && \
     adduser \
@@ -27,7 +27,7 @@ RUN python -m venv /py && \
         --no-create-home \
         django-user
 
-ENV PATH="/py/bin:${PATH}"
+ENV PATH="/py/bin/:$PATH"
 
 USER django-user
 
