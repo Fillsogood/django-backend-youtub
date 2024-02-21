@@ -2,7 +2,7 @@ from python:3.11
 label maintainer = 'Fillsogood'
 
 # 도커에서 출력의 결과값 터미널에서 보여줌
-env PYTHONBUFFERED 1 
+env PYTHONUNBUFFERED 1 
 
 copy ./requirements.txt /tmp/requirements.txt
 copy ./requirements.dev.txt /tmp/requirements.dev.txt
