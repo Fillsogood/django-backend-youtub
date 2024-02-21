@@ -6,7 +6,7 @@ on: [push]
 jobs:
   test-lint:
     name: Test and test-lint
-    runs-on: ubuntu-20.24
+    runs-on: ubuntu-latest
     steps:
       - name: CheckOut
         uses: actions/checkout@v2
