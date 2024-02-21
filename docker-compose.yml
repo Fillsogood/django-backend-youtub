@@ -1,5 +1,4 @@
 # 이미지들을 관리해주는 파일
-
 version: '3.11'
 services:
   app:
