@@ -1,18 +1,18 @@
-from python:3.11
-label maintainer = 'Fillsogood'
+FROM python:3.11
+LABEL maintainer = 'Fillsogood'
 
 # 도커에서 출력의 결과값 터미널에서 보여줌
-env PYTHONUNBUFFERED 1 
+ENV PYTHONUNBUFFERED 1 
 
-copy ./requirements.txt /tmp/requirements.txt
-copy ./requirements.dev.txt /tmp/requirements.dev.txt
-copy ./app /app
+COPY ./requirements.txt /tmp/requirements.txt
+COPY ./requirements.dev.txt /tmp/requirements.dev.txt
+COPY ./app /app
 
-workdir /app
-expose 8000
+WORKDIR /app
+EXPOSE 8000
 
 #개발 ture 일 때 사용가능
-arg DEV=false 
+ARG DEV=false 
 # 도커가 실행 할 때마다 실행되는 명령어
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
@@ -27,7 +27,7 @@ RUN python -m venv /py && \
         --no-create-home \
         django-user
 
-env PATH="/py/bin:${PATH}"
+ENV PATH="/py/bin:$PATH"
 
-user django-user
+USER django-user
 
