@@ -58,9 +58,34 @@
 
 ## 수업 진행
 - 1일차 : Project Settings (Docker => Django, Github => Github Actions(CI))
+
 - 2일차 : 
     - Project Settings (PostgreSQL)
-    - CustomUser Model
-        - 왜 커스텀 유저 모델을 사용하는가?
-            - 장고의 유저 모델을 상속받아서 기존에 구현된 기능을 내가 직접 구현하지 않아도 되기 때문에.
-            - 장고의 공식 문서에서 강력히 추천한다.
+    - 연결 하는 부분 작업(DB 컨테이너가 준비될 때까지 Django 커멘드 명령을 통해서 DB 연결 재시도) -wait_for_db
+
+- 3일차: CustomUser Model
+    - 왜 커스텀 유저 모델을 사용하는가?
+        - 장고의 유저 모델을 상속받아서 기존에 구현된 기능을 내가 직접 구현하지 않아도 되기 때문에.
+        - 장고의 공식 문서에서 강력히 추천한다.
+        - drf-sepectacular
+##### (1) User Model 생성
+- docker-compose run --rm app sh -c 'django-admin startapp users'
+- django에게 알려준다. settings.py
+- UserModel 생성
+- makemigrations => test코드 실행
+
+- custom UserModel migrate => 디버깅
+- custom Useradmin 생성
+- Swagger-API(API docs) => drf-spetacular
+
+- docker-compose run --rm app sh -c 'python manage.py makemigrations'
+- docker-compose run --rm app sh -c 'python manage.py migrate'
+- docker-compose up
+
+- docker-compose run --rm app sh -c 'python manage.py showmigrations'
+##### (2) Test Code 작성
+
+##### (3) AbstractUserModel 상속
+
+##### (4) Admin 세팅
+
