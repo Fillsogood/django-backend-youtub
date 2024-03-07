@@ -7,6 +7,8 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /app
+COPY ./scripts /scripts
+
 
 WORKDIR /app
 EXPOSE 8000
@@ -18,7 +20,7 @@ RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     apt-get update && \
-    apt-get install -y postgresql-client build-essential libpq-dev && \
+    apt-get install -y postgresql-client build-essential libpq-dev zlib1g zlib1g-dev && \
     if [ $DEV = "true" ] ; \
         then echo "===THIS IS DEVELOPMENT BUILD===" && \
         /py/bin/pip install -r /tmp/requirements.dev.txt ; \
@@ -29,13 +31,14 @@ RUN python -m venv /py && \
     adduser \
         --disabled-password \
         --no-create-home \
-        django-user \
-    mkdir -p /vol/web && \
+        django-user && \
+    mkdir -p /vol/web/static && \
+    mkdir -p /vol/web/media && \
     chown -R django-user:django-user /vol/ && \
-    chmod -R 755 /vol/web && \
+    chmod -R 755 /vol && \
     chmod -R +x /scripts
 
-ENV PATH="/scripts:py/bin/:$PATH"
+ENV PATH="/scripts:/py/bin/:$PATH"
 
 USER django-user
 
