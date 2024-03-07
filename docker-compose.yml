@@ -17,7 +17,7 @@ services:
      - DB_HOST=db
      - DB_NAME=youtube
      - DB_USER=logi
-     - DB_PASSWORD=1234
+     - DB_PASS=1234
     depends_on:
       - db
 
@@ -31,4 +31,4 @@ services:
      - POSTGRES_DB=youtube
      - POSTGRES_USER=logi
      - POSTGRES_PASSWORD=1234
-    
+     

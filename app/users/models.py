@@ -29,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_business = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    # is_superuser = models.BooleanField(default=False)
+   
     # 유저네임 필드를 email로 설정 왜냐하면 email로 유저네임을 지정
     USERNAME_FIELD = 'email'
     objects = UserManager()
